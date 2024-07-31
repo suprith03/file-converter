@@ -1,22 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Compression from './components/Compression';
+import Decompression from './components/Decompression';
 import './App.css';
 
 function App() {
+  const [view, setView] = useState('home');
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>File - Converter</h1>
+        {view === 'home' && (
+          <div>
+            <button onClick={() => setView('compression')} className="button">Compress File</button>
+            <button onClick={() => setView('decompression')} className="button">Decompress File</button>
+          </div>
+        )}
+        {view === 'compression' && <Compression />}
+        {view === 'decompression' && <Decompression />}
       </header>
     </div>
   );
