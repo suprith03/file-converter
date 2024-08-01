@@ -10,18 +10,25 @@ function Compression() {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    setFile(selectedFile);
-    setOriginalSize((selectedFile.size / 1024).toFixed(2)); // KB
+    if (selectedFile && selectedFile.type !== 'application/zip') {
+      setFile(selectedFile);
+      setOriginalSize((selectedFile.size / 1024).toFixed(2)); 
+      setNotification('');
+    } else {
+      setNotification('Please upload a non-ZIP file.');
+    }
   };
 
   const handleCompress = async () => {
     if (file) {
-      const { compressedData, size, huffmanTree } = await compressFile(file);
-      setCompressedSize((size / 1024).toFixed(2)); // KB
+      const { compressedData, size, huffmanTree, originalFileName, originalFileType } = await compressFile(file);
+      setCompressedSize((size / 1024).toFixed(2)); 
       setCompressedFile(compressedData);
       setNotification('File converted successfully!');
-      // Save huffmanTree for decompression
+      
       localStorage.setItem('huffmanTree', JSON.stringify(huffmanTree));
+      localStorage.setItem('originalFileName', originalFileName);
+      localStorage.setItem('originalFileType', originalFileType);
     }
   };
 
@@ -43,7 +50,7 @@ function Compression() {
       <button onClick={handleCompress} className="button">Compress</button>
       {compressedFile && <p>Compressed Size: {compressedSize} KB</p>}
       {compressedFile && (
-        <button onClick={handleDownload} className="button">Download Compressed File</button>
+        <button onClick={handleDownload} className="button">Download File</button>
       )}
       {notification && <p className="notification">{notification}</p>}
     </div>

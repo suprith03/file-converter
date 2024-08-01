@@ -7,6 +7,8 @@ function Decompression() {
   const [decompressedSize, setDecompressedSize] = useState(0);
   const [decompressedFile, setDecompressedFile] = useState(null);
   const [notification, setNotification] = useState('');
+  const [decompressedFileName, setDecompressedFileName] = useState('');
+  const [decompressedFileType, setDecompressedFileType] = useState('');
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -17,19 +19,22 @@ function Decompression() {
   const handleDecompress = async () => {
     if (file) {
       const huffmanTree = JSON.parse(localStorage.getItem('huffmanTree'));
-      const { decompressedData, size } = await decompressFile(file, huffmanTree);
+      const { decompressedData, size, originalFileName, originalFileType } = await decompressFile(file, huffmanTree);
       setDecompressedSize((size / 1024).toFixed(2)); 
       setDecompressedFile(decompressedData);
       setNotification('File decompressed successfully!');
+  
+      setDecompressedFileName(originalFileName);
+      setDecompressedFileType(originalFileType);
     }
   };
 
   const handleDownload = () => {
     if (decompressedFile) {
-      const blob = new Blob([decompressedFile]);
+      const blob = new Blob([decompressedFile], { type: decompressedFileType });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
-      link.download = 'enterFileName';
+      link.download = decompressedFileName;
       link.click();
     }
   };
@@ -42,7 +47,7 @@ function Decompression() {
       <button onClick={handleDecompress} className="button">Decompress</button>
       {decompressedFile && <p>Decompressed Size: {decompressedSize} KB</p>}
       {decompressedFile && (
-        <button onClick={handleDownload} className="button">Download Decompressed File</button>
+        <button onClick={handleDownload} className="button">Download File</button>
       )}
       {notification && <p className="notification">{notification}</p>}
     </div>
