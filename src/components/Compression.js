@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { compressFile } from '../huffmanCoding';
 
-function Compression() {
+function Compression({ goBack }) {
   const [file, setFile] = useState(null);
   const [originalSize, setOriginalSize] = useState(0);
   const [compressedSize, setCompressedSize] = useState(0);
@@ -45,6 +45,7 @@ function Compression() {
   return (
     <div className="compression-container">
       <h2>Compress File</h2>
+      <button onClick={goBack} className="button">{"< Back"}</button>
       <input type="file" onChange={handleFileChange} accept="*/*" />
       {file && <p>Original Size: {originalSize} KB</p>}
       <button onClick={handleCompress} className="button">Compress</button>
@@ -52,7 +53,7 @@ function Compression() {
       {compressedFile && (
         <button onClick={handleDownload} className="button">Download File</button>
       )}
-      {notification && <p className="notification">{notification}</p>}
+      {notification && <p className={`notification ${notification === 'Please upload a non-ZIP file.' ? 'error' : ''}`}>{notification}</p>}
     </div>
   );
 }

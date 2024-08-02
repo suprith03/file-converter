@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { decompressFile } from '../huffmanCoding';
 
-function Decompression() {
+function Decompression({ goBack }) {
   const [file, setFile] = useState(null);
   const [originalSize, setOriginalSize] = useState(0);
   const [decompressedSize, setDecompressedSize] = useState(0);
@@ -42,6 +42,7 @@ function Decompression() {
   return (
     <div className="decompression-container">
       <h2>Decompress File</h2>
+      <button onClick={goBack} className="button">{"< Back"}</button>
       <input type="file" onChange={handleFileChange} accept=".zip" />
       {file && <p>Original Size: {originalSize} KB</p>}
       <button onClick={handleDecompress} className="button">Decompress</button>

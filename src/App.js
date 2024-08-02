@@ -16,8 +16,8 @@ function App() {
             <button onClick={() => setView('decompression')} className="button">Decompress File</button>
           </div>
         )}
-        {view === 'compression' && <Compression />}
-        {view === 'decompression' && <Decompression />}
+        {view === 'compression' && <Compression goBack={() => setView('home')} />}
+        {view === 'decompression' && <Decompression goBack={() => setView('home')} />}
       </header>
     </div>
   );

@@ -47,6 +47,10 @@ body {
   animation: fadeIn 1s ease-in-out;
 }
 
+.notification.error {
+  color: red;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
