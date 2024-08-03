@@ -42,7 +42,7 @@ function Decompression({ goBack }) {
   return (
     <div className="decompression-container">
       <h2>Decompress File</h2>
-      <button onClick={goBack} className="button">{"< Back"}</button>
+      <button onClick={goBack} className="button small-button">{"< Back"}</button>
       <input type="file" onChange={handleFileChange} accept=".zip" />
       {file && <p>Original Size: {originalSize} KB</p>}
       <button onClick={handleDecompress} className="button">Decompress</button>

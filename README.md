@@ -1,3 +1,19 @@
+# File-Converter
+
+Project on Compression and Decompression
+
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/HomePage.png)
+
+### Compression
+![Compression Page](screenshots/C.png)
+
+### Decompression
+![Decompression Page](screenshots/D.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

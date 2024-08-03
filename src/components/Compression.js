@@ -45,7 +45,7 @@ function Compression({ goBack }) {
   return (
     <div className="compression-container">
       <h2>Compress File</h2>
-      <button onClick={goBack} className="button">{"< Back"}</button>
+      <button onClick={goBack} className="button small-button">{"< Back"}</button>
       <input type="file" onChange={handleFileChange} accept="*/*" />
       {file && <p>Original Size: {originalSize} KB</p>}
       <button onClick={handleCompress} className="button">Compress</button>
