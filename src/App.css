@@ -1,8 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap');
 
 body {
   margin: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1b263b, #415a77);
+  color: #eaeaea;
+  overflow-x: hidden;
 }
 
 .App {
@@ -10,91 +13,109 @@ body {
 }
 
 .App-header {
-  background-color: #0f0f0f;
+  background: radial-gradient(circle, rgba(58, 123, 213, 0.5), rgba(0, 0, 0, 0.8));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(12px + 2vmin);
   color: white;
-  padding: 20px;
-  cursor: default;
+  padding: 60px 30px;
+  animation: fadeIn 1.2s ease-out, moveUp 1.3s ease-out;
+  border-bottom: 8px solid #4fb6e9;
+  border-radius: 0 0 50px 50px;
 }
 
 h1 {
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #ffffff, #ffffff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGlow 1.5s ease-in-out infinite alternate;
 }
 
 h2 {
-  font-weight: 540;
-  color: #ffffff;
+  font-weight: 600;
+  color: #eaeaea;
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
 .button {
-  margin: 10px;
-  padding: 12px 24px;
-  background-color: #008909;
+  margin: 15px;
+  padding: 16px 30px;
+  background-color: #00c897;
   border: none;
-  border-radius: 5px;
+  border-radius: 35px;
   cursor: pointer;
-  font-size: 1em;
-  font-weight: 500;
+  font-size: 1.2em;
+  font-weight: 600;
   color: #ffffff;
-  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  transition: background-color 0.4s, transform 0.4s ease-in-out, box-shadow 0.4s;
 }
 
 .button:hover {
-  background-color: transparent;
-  border: 2px solid #ffffff;
+  background-color: #00a67b;
   transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 200, 151, 0.6);
 }
 
 .button:active {
-  background-color: #000000;
+  background-color: #008a62;
+  transform: scale(0.95);
 }
 
 .small-button {
-  padding: 8px 16px;
-  font-size: 0.7em;
+  padding: 10px 20px;
+  font-size: 1em;
 }
 
 .compression-container, .decompression-container {
-  background-color: #5b5b5b;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 500px;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 25px;
+  border-radius: 20px;
+  margin-top: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
   margin: 20px auto;
+  transition: transform 0.3s, box-shadow 0.4s ease-in-out;
+}
+
+.compression-container:hover, .decompression-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 35px rgba(56, 189, 248, 0.6);
 }
 
 input[type="file"] {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #000000;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #282c34;
+  margin: 12px 0;
+  padding: 12px;
+  border: 2px solid #00c897;
+  border-radius: 10px;
+  background-color: #eaeaea;
+  color: #333;
   cursor: pointer;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="file"]:hover {
-  border: 3px solid #000000;
+  border-color: #3b82f6;
+  background-color: #e0f4f7;
+  box-shadow: 0 0 10px #00c897;
 }
 
 .notification {
   color: #ffffff;
-  margin-top: 10px;
-  font-size: 1.2em;
+  margin-top: 12px;
+  font-size: 1.3em;
   animation: fadeIn 1s ease-in-out;
 }
 
 .notification.error {
-  color: red;
+  color: #ff4d4d;
 }
 
 @keyframes fadeIn {
@@ -102,30 +123,41 @@ input[type="file"]:hover {
   to { opacity: 1; }
 }
 
+@keyframes moveUp {
+  from { transform: translateY(50px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes textGlow {
+  0% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(56, 189, 248, 0.5); }
+  100% { text-shadow: 0 0 25px rgba(255, 255, 255, 0.7), 0 0 40px rgba(56, 189, 248, 0.9); }
+}
+
 @media (max-width: 600px) {
   .App-header {
-    padding: 10px;
-    font-size: calc(8px + 2vmin);
+    padding: 20px;
+    font-size: calc(10px + 2vmin);
+    border-radius: 0 0 30px 30px;
   }
 
   .button {
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 0.9em;
+    margin: 10px;
+    padding: 14px 28px;
+    font-size: 1em;
   }
 
   .compression-container, .decompression-container {
-    padding: 15px;
-    margin: 10px auto;
+    padding: 20px;
+    margin: 15px auto;
   }
 
   input[type="file"] {
-    margin: 5px 0;
-    padding: 8px;
+    margin: 7px 0;
+    padding: 10px;
     font-size: 0.9em;
   }
 
   .notification {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 }
